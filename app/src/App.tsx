@@ -1,6 +1,5 @@
 import { AnimatePresence, motion } from "framer-motion";
 import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Hls from "hls.js";
 import {
   ArrowDown,
@@ -10,18 +9,52 @@ import {
   Linkedin,
   Mail,
 } from "lucide-react";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
-
-gsap.registerPlugin(ScrollTrigger);
 
 const HLS_SOURCE = "https://stream.mux.com/Aa02T7oM1wH5Mk5EEVDYhbZ1ChcdhRsS2m1NYyx4Ua1g.m3u8";
 const email = "ayushiamitagrawal@gmail.com";
 const emailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${email}`;
-const linkedInUrl = "https://www.linkedin.com/in/ayushi-agrawal/";
+const linkedInUrl = "https://www.linkedin.com/in/ayushiaagrawal/";
 const githubUrl = "https://github.com/ayushivagrawal";
 
 const roles = ["Python Developer", "AI Engineer", "Financial Systems Builder", "Production Debugger"];
+
+const skills = [
+  "Python",
+  "FastAPI",
+  "Streamlit",
+  "OpenAI API",
+  "LangChain",
+  "Django REST",
+  "LangGraph",
+  "Planner-Executor Agents",
+  "Tool Orchestration",
+  "RAG",
+  "Vector Embeddings",
+  "ChromaDB",
+  "LangSmith",
+  "Prompt Engineering",
+  "Structured Outputs",
+  "Guardrails",
+  "PII Masking",
+  "Amazon Bedrock",
+  "Hugging Face",
+  "spaCy NLP",
+  "Pydantic",
+  "AWS Lambda",
+  "S3",
+  "Glue",
+  "Athena",
+  "QuickSight",
+  "PostgreSQL",
+  "Java",
+  "Spring Boot",
+  "Docker",
+  "Kubernetes",
+  "SonarQube",
+  "CI/CD",
+];
 
 const workItems = [
   {
@@ -66,63 +99,39 @@ const workItems = [
   },
 ];
 
-const journalEntries = [
+const experienceItems = [
   {
-    title: "What production failures taught me about readable software",
-    date: "May 2026",
-    read: "4 min",
-    image: "https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=500&q=80",
+    company: "Nationwide Insurance",
+    role: "Software Engineer / Python Developer",
+    period: "June 2022 - June 2025",
+    location: "Columbus, OH",
+    highlights: [
+      "Implemented a Python-based analytical model into a suitability application through REST APIs, enabling rule execution and decision scoring with OpenL Tablets.",
+      "Refactored Java suitability components with the Factory Design Pattern, improved annuity contract approval accuracy by 24%, and upgraded services from Java 8 to Java 17.",
+      "Built AWS ETL workflows using S3-triggered Lambda functions, Glue Crawlers, Athena SQL, and 30+ QuickSight datasets for annuity reporting and analytics.",
+      "Integrated SonarQube, JUnit, Tosca, Docker, Kubernetes, and CI/CD workflows to improve coverage, reliability, deployment readiness, and production support.",
+    ],
   },
   {
-    title: "Designing AI code agents with retrieval, guardrails, and traces",
-    date: "Apr 2026",
-    read: "6 min",
-    image: "https://images.unsplash.com/photo-1675557009875-436f71457475?auto=format&fit=crop&w=500&q=80",
+    company: "ConsultAdd Inc.",
+    role: "Python Developer",
+    period: "May 2021 - August 2022",
+    location: "New York, United States",
+    highlights: [
+      "Developed Python scripts and AWS Lambda workflows for Elasticsearch extraction, Kinesis transformation, S3 storage, and Salesforce Graph API automation.",
+      "Built a Django REST Framework OTP delivery API with Plivo and unit-tested login/authentication workflows.",
+      "Maintained a Master Data Management application with 10,000+ records and supported GitLab CI/CD testing pipelines, Splunk log analysis, Redis cache, and Jenkins deployments.",
+    ],
   },
   {
-    title: "Turning vendor files into analysis-ready financial dashboards",
-    date: "Mar 2026",
-    read: "5 min",
-    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=500&q=80",
-  },
-  {
-    title: "Why secure systems need test coverage people can trust",
-    date: "Feb 2026",
-    read: "3 min",
-    image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=500&q=80",
-  },
-];
-
-const explorationItems = [
-  {
-    title: "Trace maps",
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=700&q=80",
-    rotate: "-rotate-3",
-  },
-  {
-    title: "Rule flow studies",
-    image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=700&q=80",
-    rotate: "rotate-2",
-  },
-  {
-    title: "Agent memory",
-    image: "https://images.unsplash.com/photo-1677442135703-1787eea5ce01?auto=format&fit=crop&w=700&q=80",
-    rotate: "rotate-3",
-  },
-  {
-    title: "Data contracts",
-    image: "https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&w=700&q=80",
-    rotate: "-rotate-2",
-  },
-  {
-    title: "Coverage plans",
-    image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=700&q=80",
-    rotate: "rotate-1",
-  },
-  {
-    title: "Dashboard systems",
-    image: "https://images.unsplash.com/photo-1556155092-490a1ba16284?auto=format&fit=crop&w=700&q=80",
-    rotate: "-rotate-3",
+    company: "Binghamton University",
+    role: "Software Engineer Intern / IT Support Specialist",
+    period: "August 2019 - April 2021",
+    location: "United States",
+    highlights: [
+      "Supported internal IT operations, troubleshooting, application enhancements, AWS hosting tasks, and small automation workflows.",
+      "Provided networking and desktop support for students and faculty while building practical experience with Python, web technologies, and cloud-based tools.",
+    ],
   },
 ];
 
@@ -243,7 +252,7 @@ function Navbar() {
   const links = [
     ["Home", "hero"],
     ["Work", "work"],
-    ["Proof", "proof"],
+    ["Experience", "experience"],
   ];
 
   useEffect(() => {
@@ -328,7 +337,6 @@ function Hero() {
     <section id="hero" className="relative grid min-h-screen place-items-center overflow-hidden px-6 py-32 text-center">
       <VideoBackground />
       <div className="relative z-10 mx-auto max-w-4xl">
-        <div className="blur-in mb-8 text-xs uppercase tracking-[0.3em] text-muted">Collection '26</div>
         <h1 className="name-reveal mb-6 font-display text-6xl italic leading-[0.9] tracking-tight text-text-primary md:text-8xl lg:text-9xl">
           Ayushi Agrawal
         </h1>
@@ -340,8 +348,9 @@ function Hero() {
           based in the USA.
         </p>
         <p className="blur-in mx-auto mb-12 max-w-xl text-sm leading-7 text-muted md:text-base">
-          I build financial applications and AI tools that help teams understand what went wrong, improve what is
-          fragile, and ship production systems with fewer failures.
+          I work on the kind of software problems that usually hide between code, rules, logs, and production behavior.
+          I build financial applications and AI tools that help teams understand what went wrong and ship systems with
+          fewer failures.
         </p>
         <div className="blur-in inline-flex flex-wrap justify-center gap-4">
           <a className="button-solid" href="#work">
@@ -412,8 +421,7 @@ function SelectedWorks() {
           eyebrow="Selected Work"
           title="Featured"
           italic="projects"
-          subtext="Production debugging, AI engineering, and data foundations from concept to launch."
-          action="View all work"
+          subtext="Production debugging, AI engineering, and data foundations."
         />
         <div className="grid grid-cols-1 gap-5 md:grid-cols-12 md:gap-6">
           {workItems.map((item) => (
@@ -438,10 +446,16 @@ function SelectedWorks() {
                 <p className="max-w-2xl text-sm leading-6 text-white/72">{item.problem}</p>
               </div>
               <div className="absolute inset-0 grid place-items-center bg-bg/70 opacity-0 backdrop-blur-lg transition duration-300 group-hover:opacity-100">
-                <div className="gradient-border rounded-full p-[2px]">
-                  <div className="max-w-[88vw] rounded-full bg-white px-5 py-3 text-center text-sm text-bg md:px-7">
-                    <span>View - </span>
-                    <span className="font-display italic">{item.title}</span>
+                <div className="mx-5 max-w-xl rounded-3xl border border-white/10 bg-bg/90 p-5 text-left shadow-2xl shadow-black/40 md:p-7">
+                  <div className="mb-4 flex items-center gap-3">
+                    <span className="h-px w-8 bg-[#89AACC]" />
+                    <span className="text-xs uppercase tracking-[0.24em] text-white/60">Project Detail</span>
+                  </div>
+                  <h3 className="mb-3 text-2xl font-semibold leading-tight text-white md:text-3xl">{item.title}</h3>
+                  <p className="mb-4 text-sm leading-6 text-white/70">{item.problem}</p>
+                  <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
+                    <p className="mb-2 text-xs uppercase tracking-[0.22em] text-white/50">Result</p>
+                    <p className="text-sm leading-6 text-white">{item.result}</p>
                   </div>
                 </div>
               </div>
@@ -456,39 +470,62 @@ function SelectedWorks() {
   );
 }
 
-function Journal() {
+function Experience() {
   return (
-    <section className="bg-bg py-16 md:py-24">
+    <section id="experience" className="bg-bg py-16 md:py-24">
       <div className="mx-auto max-w-[1200px] px-6 md:px-10 lg:px-16">
         <SectionHeader
-          eyebrow="Journal"
-          title="Recent"
-          italic="thoughts"
-          subtext="Notes on production behavior, agentic AI, data pipelines, and building systems the next engineer can understand."
-          action="View all"
+          eyebrow="Experience"
+          title="Production"
+          italic="work"
+          subtext="Five years across financial services, Python backend systems, AWS data pipelines, rule engines, AI tools, and production support."
         />
-        <div className="space-y-4">
-          {journalEntries.map((entry) => (
+        <div className="space-y-5">
+          {experienceItems.map((item) => (
             <motion.article
-              key={entry.title}
-              className="group flex items-center gap-4 rounded-[40px] border border-stroke bg-surface/30 p-4 transition hover:bg-surface sm:rounded-full sm:pr-7 md:gap-6"
-              initial={{ opacity: 0, y: 18 }}
+              key={item.company}
+              className="rounded-3xl border border-stroke bg-surface/40 p-6 transition hover:bg-surface md:p-8"
+              initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.65 }}
+              transition={{ duration: 0.7 }}
               viewport={{ once: true }}
             >
-              <img className="h-20 w-20 rounded-full object-cover sm:h-24 sm:w-24" src={entry.image} alt="" />
-              <div className="min-w-0 flex-1">
-                <h3 className="text-base font-medium leading-snug text-text-primary md:text-xl">{entry.title}</h3>
-                <div className="mt-2 flex flex-wrap gap-3 text-xs uppercase tracking-[0.2em] text-muted">
-                  <span>{entry.date}</span>
-                  <span>{entry.read}</span>
+              <div className="mb-6 flex flex-col justify-between gap-3 md:flex-row md:items-start">
+                <div>
+                  <p className="mb-2 text-xs uppercase tracking-[0.24em] text-muted">{item.role}</p>
+                  <h3 className="text-2xl font-semibold leading-tight text-text-primary md:text-3xl">{item.company}</h3>
+                </div>
+                <div className="text-left text-xs uppercase tracking-[0.2em] text-muted md:text-right">
+                  <div>{item.period}</div>
+                  <div className="mt-1">{item.location}</div>
                 </div>
               </div>
-              <ArrowUpRight className="hidden h-5 w-5 text-muted transition group-hover:text-text-primary sm:block" />
+              <div className="grid gap-4 md:grid-cols-2">
+                {item.highlights.map((highlight) => (
+                  <p key={highlight} className="rounded-2xl border border-stroke bg-bg/50 p-4 text-sm leading-7 text-muted">
+                    {highlight}
+                  </p>
+                ))}
+              </div>
             </motion.article>
           ))}
         </div>
+        <motion.div
+          className="mt-8 rounded-3xl border border-stroke bg-surface/30 p-6 md:p-8"
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7 }}
+          viewport={{ once: true }}
+        >
+          <p className="mb-5 text-xs uppercase tracking-[0.3em] text-muted">GenAI / Agentic AI Stack</p>
+          <div className="flex flex-wrap gap-3">
+            {skills.map((skill) => (
+              <span key={skill} className="rounded-full border border-stroke bg-bg px-4 py-2 text-sm text-text-primary">
+                {skill}
+              </span>
+            ))}
+          </div>
+        </motion.div>
       </div>
     </section>
   );
@@ -541,123 +578,11 @@ function ProfileBand() {
   );
 }
 
-function Explorations() {
-  const sectionRef = useRef<HTMLElement>(null);
-  const contentRef = useRef<HTMLDivElement>(null);
-  const leftRef = useRef<HTMLDivElement>(null);
-  const rightRef = useRef<HTMLDivElement>(null);
-  const [lightbox, setLightbox] = useState<(typeof explorationItems)[number] | null>(null);
-
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      if (!sectionRef.current || !contentRef.current) return;
-      ScrollTrigger.create({
-        trigger: sectionRef.current,
-        start: "top top",
-        end: "bottom bottom",
-        pin: contentRef.current,
-        pinSpacing: false,
-      });
-
-      gsap.to(leftRef.current, {
-        y: -260,
-        ease: "none",
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top bottom",
-          end: "bottom top",
-          scrub: true,
-        },
-      });
-
-      gsap.to(rightRef.current, {
-        y: 260,
-        ease: "none",
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top bottom",
-          end: "bottom top",
-          scrub: true,
-        },
-      });
-    }, sectionRef);
-
-    return () => ctx.revert();
-  }, []);
-
-  const columns = useMemo(
-    () => [explorationItems.filter((_, index) => index % 2 === 0), explorationItems.filter((_, index) => index % 2 === 1)],
-    [],
-  );
-
-  return (
-    <section ref={sectionRef} className="relative min-h-[300vh] overflow-hidden bg-bg">
-      <div ref={contentRef} className="relative z-10 grid h-screen place-items-center px-6 text-center">
-        <div>
-          <div className="mb-5 text-xs uppercase tracking-[0.3em] text-muted">Explorations</div>
-          <h2 className="font-body text-5xl font-semibold leading-none tracking-tight text-text-primary md:text-7xl">
-            Visual <em className="font-display font-normal italic">playground</em>
-          </h2>
-          <p className="mx-auto mt-5 max-w-lg text-sm leading-7 text-muted md:text-base">
-            Interface studies for traceability, retrieval workflows, dashboard thinking, and production system maps.
-          </p>
-        </div>
-      </div>
-      <div className="absolute inset-x-0 top-0 z-20 mx-auto grid max-w-[1400px] grid-cols-2 gap-12 px-6 py-[42vh] md:gap-40 md:px-16">
-        <div ref={leftRef} className="flex flex-col items-end gap-24">
-          {columns[0].map((item) => (
-            <ExplorationCard key={item.title} item={item} onClick={() => setLightbox(item)} />
-          ))}
-        </div>
-        <div ref={rightRef} className="mt-40 flex flex-col gap-24">
-          {columns[1].map((item) => (
-            <ExplorationCard key={item.title} item={item} onClick={() => setLightbox(item)} />
-          ))}
-        </div>
-      </div>
-      <AnimatePresence>
-        {lightbox && (
-          <motion.button
-            className="fixed inset-0 z-[100] grid cursor-zoom-out place-items-center bg-black/80 p-6 backdrop-blur"
-            onClick={() => setLightbox(null)}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            aria-label="Close image preview"
-          >
-            <motion.img
-              className="max-h-[82vh] max-w-[92vw] rounded-3xl object-contain"
-              src={lightbox.image}
-              alt={lightbox.title}
-              initial={{ scale: 0.92, y: 20 }}
-              animate={{ scale: 1, y: 0 }}
-              exit={{ scale: 0.96, y: 20 }}
-            />
-          </motion.button>
-        )}
-      </AnimatePresence>
-    </section>
-  );
-}
-
-function ExplorationCard({ item, onClick }: { item: (typeof explorationItems)[number]; onClick: () => void }) {
-  return (
-    <button
-      className={`group relative aspect-square w-full max-w-[320px] overflow-hidden rounded-3xl border border-white/10 bg-surface shadow-2xl shadow-black/40 ${item.rotate}`}
-      onClick={onClick}
-    >
-      <img className="h-full w-full object-cover transition duration-700 group-hover:scale-105" src={item.image} alt={item.title} />
-      <div className="absolute inset-0 bg-gradient-to-t from-black/65 to-transparent opacity-80" />
-      <span className="absolute bottom-5 left-5 text-left text-sm font-medium text-white">{item.title}</span>
-    </button>
-  );
-}
-
 function Stats() {
   const stats = [
-    ["24%", "Approval Accuracy Improvement"],
-    ["40% -> 10%", "Production Vulnerability Reduction"],
-    ["0% -> 80%+", "Code Coverage Improvement"],
+    ["5+", "Years in software, AI, data, and financial services"],
+    ["30+", "QuickSight datasets built for annuity analytics"],
+    ["20+", "PostgreSQL queries scripted for reporting and analysis"],
   ];
 
   return (
@@ -744,9 +669,8 @@ function HomePage() {
       <Navbar />
       <Hero />
       <SelectedWorks />
-      <Journal />
+      <Experience />
       <ProfileBand />
-      <Explorations />
       <Stats />
       <ContactFooter />
     </>
