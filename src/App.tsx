@@ -6,7 +6,6 @@ import {
   ArrowDown,
   ArrowRight,
   ArrowUpRight,
-  Download,
   Github,
   Linkedin,
   Mail,
@@ -244,7 +243,7 @@ function Navbar() {
   const links = [
     ["Home", "hero"],
     ["Work", "work"],
-    ["Resume", "resume"],
+    ["Proof", "proof"],
   ];
 
   useEffect(() => {
@@ -276,32 +275,19 @@ function Navbar() {
           </span>
         </button>
         <span className="mx-1 hidden h-5 w-px bg-stroke sm:block" />
-        {links.map(([label, id]) =>
-          id === "resume" ? (
-            <a
-              key={id}
-              href="/Ayushi_Agrawal_Resume.docx"
-              download
-              className="rounded-full px-3 py-1.5 text-xs text-muted transition hover:bg-stroke/50 hover:text-text-primary sm:px-4 sm:py-2 sm:text-sm"
-            >
-              {label}
-            </a>
-          ) : (
-            <button
-              key={id}
-              onClick={() => scrollTo(id)}
-              className="rounded-full px-3 py-1.5 text-xs text-muted transition hover:bg-stroke/50 hover:text-text-primary sm:px-4 sm:py-2 sm:text-sm"
-            >
-              {label}
-            </button>
-          ),
-        )}
+        {links.map(([label, id]) => (
+          <button
+            key={id}
+            onClick={() => scrollTo(id)}
+            className="rounded-full px-3 py-1.5 text-xs text-muted transition hover:bg-stroke/50 hover:text-text-primary sm:px-4 sm:py-2 sm:text-sm"
+          >
+            {label}
+          </button>
+        ))}
         <span className="mx-1 hidden h-5 w-px bg-stroke sm:block" />
         <a
           className="gradient-border group relative rounded-full p-[2px] text-xs text-text-primary sm:text-sm"
           href={emailUrl}
-          target="_blank"
-          rel="noreferrer"
         >
           <span className="flex items-center gap-1 rounded-full bg-surface px-3 py-1.5 backdrop-blur-md sm:px-4 sm:py-2">
             Say hi <ArrowUpRight className="h-3.5 w-3.5" />
@@ -361,7 +347,7 @@ function Hero() {
           <a className="button-solid" href="#work">
             See Works
           </a>
-          <a className="button-outline" href={emailUrl} target="_blank" rel="noreferrer">
+          <a className="button-outline" href={emailUrl}>
             Reach out <ArrowUpRight className="h-4 w-4" />
           </a>
         </div>
@@ -615,9 +601,6 @@ function Explorations() {
           <p className="mx-auto mt-5 max-w-lg text-sm leading-7 text-muted md:text-base">
             Interface studies for traceability, retrieval workflows, dashboard thinking, and production system maps.
           </p>
-          <a className="button-outline mt-8" href={emailUrl} target="_blank" rel="noreferrer">
-            Talk through a system <ArrowUpRight className="h-4 w-4" />
-          </a>
         </div>
       </div>
       <div className="absolute inset-x-0 top-0 z-20 mx-auto grid max-w-[1400px] grid-cols-2 gap-12 px-6 py-[42vh] md:gap-40 md:px-16">
@@ -672,13 +655,13 @@ function ExplorationCard({ item, onClick }: { item: (typeof explorationItems)[nu
 
 function Stats() {
   const stats = [
-    ["3+", "Years Experience"],
-    ["95+", "Projects Done"],
-    ["200%", "Satisfied Clients"],
+    ["24%", "Approval Accuracy Improvement"],
+    ["40% -> 10%", "Production Vulnerability Reduction"],
+    ["0% -> 80%+", "Code Coverage Improvement"],
   ];
 
   return (
-    <section id="resume" className="bg-bg py-16 md:py-24">
+    <section id="proof" className="bg-bg py-16 md:py-24">
       <div className="mx-auto grid max-w-[1200px] grid-cols-1 gap-px overflow-hidden rounded-3xl border border-stroke bg-stroke px-0 md:grid-cols-3">
         {stats.map(([value, label]) => (
           <div key={label} className="bg-surface px-8 py-12 text-center md:py-16">
@@ -688,11 +671,6 @@ function Stats() {
             <p className="text-sm uppercase tracking-[0.24em] text-muted">{label}</p>
           </div>
         ))}
-      </div>
-      <div className="mx-auto mt-8 max-w-[1200px] px-6 text-center">
-        <a className="button-outline" href="/Ayushi_Agrawal_Resume.docx" download>
-          Download resume <Download className="h-4 w-4" />
-        </a>
       </div>
     </section>
   );
@@ -734,7 +712,7 @@ function ContactFooter() {
           <p className="mx-auto mt-6 max-w-xl text-sm leading-7 text-muted md:text-base">
             Want to talk about production-ready software, financial systems, or AI engineering tools?
           </p>
-          <a className="gradient-border mt-9 inline-flex rounded-full p-[2px]" href={emailUrl} target="_blank" rel="noreferrer">
+          <a className="gradient-border mt-9 inline-flex rounded-full p-[2px]" href={emailUrl}>
             <span className="inline-flex items-center gap-2 rounded-full bg-text-primary px-7 py-3.5 text-sm font-semibold text-bg">
               Email Ayushi <Mail className="h-4 w-4" />
             </span>
@@ -743,10 +721,10 @@ function ContactFooter() {
         </div>
         <div className="mx-auto mt-16 flex max-w-[1200px] flex-col items-center justify-between gap-5 px-6 text-sm text-muted md:flex-row md:px-10 lg:px-16">
           <div className="flex items-center gap-4">
-            <a className="inline-flex items-center gap-1 transition hover:text-text-primary" href={linkedInUrl} target="_blank" rel="noreferrer">
+            <a className="inline-flex items-center gap-1 transition hover:text-text-primary" href={linkedInUrl}>
               <Linkedin className="h-4 w-4" /> LinkedIn
             </a>
-            <a className="inline-flex items-center gap-1 transition hover:text-text-primary" href={githubUrl} target="_blank" rel="noreferrer">
+            <a className="inline-flex items-center gap-1 transition hover:text-text-primary" href={githubUrl}>
               <Github className="h-4 w-4" /> GitHub
             </a>
           </div>
